@@ -1,20 +1,28 @@
-﻿@page
-@* @model LojaAppWeb.Pages.DetalhesModel *@
+﻿@page "/produto/{slug}/{id:int:min(1)}"
+@model LojaAppWeb.Pages.DetalhesModel
 
-
-<h2 class="my-3">Title</h2>
+<h2 class="my-3">@Model.Produto.Nome</h2>
 <div class="row">
     <div class="col-4">
-        <img class="img-fluid rounded" src="">
+        <img class="img-fluid rounded" src="@Model.Produto.ImagemUri">
     </div>
     <div class="col-6">
         <h4 class="my-3">Sobre:</h4>
-        <p>Description</p>
+        <p>@Model.Produto.Descricao</p>
         <h4 class="my-3">Mais Info:</h4>
         <ul>
-            <li>Label1: value1</li>
-            <li>Label2: value2</li>
-            <li>Label3: value3</li>
+            <li>
+                <label asp-for="Produto.Preco"></label>
+                : @Html.DisplayFor(model => model.Produto.Preco)
+            </li>
+            <li>
+                <label asp-for="Produto.EntregaExpressa"></label>
+                : @Html.DisplayFor(model => model.Produto.EntregaExpressaFormatada)
+            </li>
+            <li>
+                <label asp-for="Produto.DataCadastro"></label>
+                : @Html.DisplayFor(model => model.Produto.DataCadastro)
+            </li>
         </ul>
         <a class="btn my-3 btn-primary">Editar</a>
     </div>

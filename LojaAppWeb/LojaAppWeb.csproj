@@ -7,19 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\Detalhes.cshtml" />
+    <Compile Remove="Index.cshtml.cs" />
+    <Compile Remove="Pages\Index1.cshtml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Pages\Detalhes.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Detalhes.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Detalhes.cshtml" />
+    <Content Remove="Index.cshtml" />
+    <Content Remove="Pages\Index1.cshtml" />
   </ItemGroup>
 
 </Project>
