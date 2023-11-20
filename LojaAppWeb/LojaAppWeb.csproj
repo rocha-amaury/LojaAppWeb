@@ -13,7 +13,20 @@
 
   <ItemGroup>
     <Content Remove="Index.cshtml" />
+    <Content Remove="Pages\Criar.cshtml" />
     <Content Remove="Pages\Index1.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\Criar.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Criar.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Criar.cshtml" />
   </ItemGroup>
 
 </Project>
