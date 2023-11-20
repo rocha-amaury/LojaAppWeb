@@ -8,5 +8,6 @@ public interface IProdutoServico
     Produto Obter(int id);
     void Incluir(Produto produto);
     void Alterar(Produto produto);
+    public void Excluir(int id);
 
 }

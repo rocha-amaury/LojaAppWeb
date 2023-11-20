@@ -39,5 +39,13 @@ namespace LojaAppWeb.Pages
 
             return RedirectToPage("/Index");
         }
+
+        public IActionResult OnPostExclusao()
+        {
+            _service.Excluir(Produto.ProdutoId);
+
+            return RedirectToPage("/Index");
+        }
     }
 }
+

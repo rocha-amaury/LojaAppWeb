@@ -91,4 +91,10 @@ public class ProdutoServico : IProdutoServico
         produtoEncontrado.EntregaExpressa = produto.EntregaExpressa;
         produtoEncontrado.DataCadastro = produto.DataCadastro;
     }
+
+    public void Excluir(int id)
+    {
+        var produtoEncontrado = Obter(id);
+        _produtos.Remove(produtoEncontrado);
+    }
 }

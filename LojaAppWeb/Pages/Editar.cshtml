@@ -1,4 +1,4 @@
-﻿@page
+﻿@page 
 @model LojaAppWeb.Pages.EditarModel
 
 <div class="row pt-5">
@@ -8,6 +8,8 @@
             <hr />
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Produto.ProdutoId" />
 
             <div class="form-group">
                 <label asp-for="Produto.Nome" class="control-label"></label>
@@ -46,6 +48,8 @@
 
             <div class="form-group mt-4">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
+                <input type="submit" value="Excluir" class="btn btn-danger" 
+                asp-page-handler="Exclusao"/>
             </div>
 
         </form>
@@ -53,8 +57,9 @@
 </div>
 
 @section Scripts
-    {
+{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
