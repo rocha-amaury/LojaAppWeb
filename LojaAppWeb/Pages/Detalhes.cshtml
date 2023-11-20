@@ -24,6 +24,7 @@
                 : @Html.DisplayFor(model => model.Produto.DataCadastro)
             </li>
         </ul>
-        <a class="btn my-3 btn-primary">Editar</a>
+        <a class="btn my-3 btn-primary"
+        asp_page="/Editar" asp-route-id="@Model.Produto.ProdutoId">Editar</a>
     </div>
 </div>

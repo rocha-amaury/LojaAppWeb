@@ -12,7 +12,7 @@ public class Produto
     public string NomeSlug => Nome.ToLower().Replace(" ", "-");
 
     [Required(ErrorMessage = "Campo 'Descrição' obrigatório")]
-    [StringLength(100, MinimumLength = 50, ErrorMessage = "Campo 'Descrição' deve ter entre 50 e 100 caracteres.")]
+    [StringLength(100, MinimumLength = 5, ErrorMessage = "Campo 'Descrição' deve ter entre 5 e 100 caracteres.")]
     [Display(Name = "Descrição")]
     public string Descricao { get; set; }
 
