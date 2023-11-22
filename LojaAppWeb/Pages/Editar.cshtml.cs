@@ -37,12 +37,16 @@ namespace LojaAppWeb.Pages
 
             _service.Alterar(Produto);
 
+            TempData["TempMensagemSucesso"] = true;
+
             return RedirectToPage("/Index");
         }
 
         public IActionResult OnPostExclusao()
         {
             _service.Excluir(Produto.ProdutoId);
+
+            TempData["TempMensagemSucesso"] = true;
 
             return RedirectToPage("/Index");
         }

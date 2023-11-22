@@ -27,6 +27,8 @@ public class CriarModel : PageModel
 
         _service.Incluir(Produto);
 
+        TempData["TempMensagemSucesso"] = true;
+
         return RedirectToPage("/Index");
     }
 }
