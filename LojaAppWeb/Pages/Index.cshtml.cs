@@ -6,10 +6,13 @@ namespace LojaAppWeb.Pages;
 
 public class IndexModel : PageModel
 {
+    public string BancoDeDados { get; set; }
+
     private readonly IProdutoServico _service;
 
-    public IndexModel(IProdutoServico service)
+    public IndexModel(IProdutoServico service, IConfiguration configuration)
     {
+        BancoDeDados = configuration.GetConnectionString("MyConn");
         _service = service;
     }
 

@@ -1,11 +1,14 @@
+using LojaAppWeb.Data;
 using LojaAppWeb.Services;
+using LojaAppWeb.Services.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddSingleton < IProdutoServico, ProdutoServico>();
+builder.Services.AddTransient < IProdutoServico, ProdutoServico>();
+builder.Services.AddDbContext<LojaDbContext>();
 
 var app = builder.Build();
 

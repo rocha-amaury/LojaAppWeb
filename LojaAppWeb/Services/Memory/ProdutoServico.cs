@@ -1,6 +1,6 @@
 ﻿using LojaAppWeb.Models;
 
-namespace LojaAppWeb.Services;
+namespace LojaAppWeb.Services.Memory;
 
 public class ProdutoServico : IProdutoServico
 {
@@ -70,7 +70,7 @@ public class ProdutoServico : IProdutoServico
 
     public IList<Produto> ObterTodos()
         => _produtos;
-    
+
     public Produto Obter(int id)
         => ObterTodos().SingleOrDefault(item => item.ProdutoId == id);
 
