@@ -11,9 +11,6 @@ namespace LojaAppWeb.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Produto");
-
             migrationBuilder.CreateTable(
                 name: "Mercadoria",
                 columns: table => new
@@ -40,10 +37,10 @@ namespace LojaAppWeb.Data.Migrations
                 name: "Mercadoria");
 
             migrationBuilder.CreateTable(
-                name: "Produto",
+                name: "Mercadoria",
                 columns: table => new
                 {
-                    ProdutoId = table.Column<int>(type: "int", nullable: false)
+                    MercadoriaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -54,7 +51,7 @@ namespace LojaAppWeb.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produto", x => x.ProdutoId);
+                    table.PrimaryKey("PK_Mercadoria", x => x.MercadoriaId);
                 });
         }
     }

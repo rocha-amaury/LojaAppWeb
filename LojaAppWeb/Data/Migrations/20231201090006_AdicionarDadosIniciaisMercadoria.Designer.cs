@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaAppWeb.Data.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    [Migration("20231122081155_AdicionarTabelaProduto")]
-    partial class AdicionarTabelaProduto
+    [Migration("20231201090006_AdicionarDadosIniciaisMercadoria")]
+    partial class AdicionarDadosIniciaisMercadoria
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,13 +25,30 @@ namespace LojaAppWeb.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LojaAppWeb.Models.Produto", b =>
+            modelBuilder.Entity("LojaAppWeb.Models.Marca", b =>
                 {
-                    b.Property<int>("ProdutoId")
+                    b.Property<int>("MarcaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProdutoId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MarcaId"));
+
+                    b.Property<string>("MarcaNome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MarcaId");
+
+                    b.ToTable("Marca");
+                });
+
+            modelBuilder.Entity("LojaAppWeb.Models.Mercadoria", b =>
+                {
+                    b.Property<int>("MercadoriaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MercadoriaId"));
 
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
@@ -48,6 +65,9 @@ namespace LojaAppWeb.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MarcaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -56,9 +76,23 @@ namespace LojaAppWeb.Data.Migrations
                     b.Property<double>("Preco")
                         .HasColumnType("float");
 
-                    b.HasKey("ProdutoId");
+                    b.HasKey("MercadoriaId");
 
-                    b.ToTable("Produto");
+                    b.HasIndex("MarcaId");
+
+                    b.ToTable("Mercadoria");
+                });
+
+            modelBuilder.Entity("LojaAppWeb.Models.Mercadoria", b =>
+                {
+                    b.HasOne("LojaAppWeb.Models.Marca", null)
+                        .WithMany("Mercadorias")
+                        .HasForeignKey("MarcaId");
+                });
+
+            modelBuilder.Entity("LojaAppWeb.Models.Marca", b =>
+                {
+                    b.Navigation("Mercadorias");
                 });
 #pragma warning restore 612, 618
         }

@@ -23,6 +23,14 @@
                 <label asp-for="Mercadoria.DataCadastro"></label>
                 : @Html.DisplayFor(model => model.Mercadoria.DataCadastro)
             </li>
+            
+            @if (Model.MarcaNome is not null)
+            {
+                <li>
+                    <label asp-for="Mercadoria.MarcaId"></label>
+                    : @Html.DisplayFor(model => model.MarcaNome)
+                </li>
+            }
         </ul>
         <a class="btn my-3 btn-primary"
         asp-page="/Editar" asp-route-id="@Model.Mercadoria.MercadoriaId">Editar</a>

@@ -10,6 +10,8 @@ public class DetalhesModel : PageModel
 
     private readonly IMercadoriaServico _service;
 
+    public string MarcaNome { get; set; }   
+
     public DetalhesModel(IMercadoriaServico service)
     {
         _service = service;
@@ -27,6 +29,10 @@ public class DetalhesModel : PageModel
     public IActionResult OnGet(int id)
     {
         Mercadoria = _service.Obter(id);
+        if (Mercadoria.MarcaId is not null)
+        { 
+            MarcaNome = _service.ObterMarca(Mercadoria.MarcaId.Value).MarcaNome;
+        }
 
         if (Mercadoria == null)
         {

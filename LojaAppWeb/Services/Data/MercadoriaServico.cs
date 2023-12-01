@@ -48,4 +48,7 @@ public class MercadoriaServico : IMercadoriaServico
     }
 
     public IList<Marca> ObterTodasMarcas() => _context.Marca.ToList();
+
+    public Marca ObterMarca(int id) => _context.Marca.SingleOrDefault(item => item.MarcaId == id);
+  
 }

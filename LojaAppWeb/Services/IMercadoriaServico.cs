@@ -10,5 +10,5 @@ public interface IMercadoriaServico
     void Alterar(Mercadoria Mercadoria);
     public void Excluir(int id);
     IList<Marca> ObterTodasMarcas();
-
+    Marca ObterMarca(int id);
 }

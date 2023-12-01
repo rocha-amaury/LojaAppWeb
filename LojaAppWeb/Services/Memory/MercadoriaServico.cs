@@ -100,4 +100,9 @@ public class MercadoriaServico : IMercadoriaServico
     }
 
     public IList<Marca> ObterTodasMarcas() => throw new NotImplementedException();
+
+    public Marca ObterMarca(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
