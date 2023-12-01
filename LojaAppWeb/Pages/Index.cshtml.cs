@@ -8,22 +8,22 @@ public class IndexModel : PageModel
 {
     public string BancoDeDados { get; set; }
 
-    private readonly IProdutoServico _service;
+    private readonly IMercadoriaServico _service;
 
-    public IndexModel(IProdutoServico service, IConfiguration configuration)
+    public IndexModel(IMercadoriaServico service, IConfiguration configuration)
     {
         BancoDeDados = configuration.GetConnectionString("MyConn");
         _service = service;
     }
 
-    public IList<Produto> ListaProdutos { get; set; }
+    public IList<Mercadoria> ListaMercadorias { get; set; }
 
     public void OnGet()
     {
         ViewData["Title"] = "Home page";
 
-        //var service = new ProdutoServico();        
-        ListaProdutos = _service.ObterTodos();
+        //var service = new MercadoriaServico();        
+        ListaMercadorias = _service.ObterTodos();
                 
     }    
 

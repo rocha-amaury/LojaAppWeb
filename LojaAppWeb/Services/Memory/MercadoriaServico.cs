@@ -1,21 +1,22 @@
 ﻿using LojaAppWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LojaAppWeb.Services.Memory;
 
-public class ProdutoServico : IProdutoServico
+public class MercadoriaServico : IMercadoriaServico
 {
-    public ProdutoServico()
+    public MercadoriaServico()
         => CarregarListaInicial();
 
-    private IList<Produto> _produtos;
+    private IList<Mercadoria> _Mercadorias;
 
     private void CarregarListaInicial()
     {
-        _produtos = new List<Produto>()
+        _Mercadorias = new List<Mercadoria>()
     {
-        new Produto
+        new Mercadoria
         {
-            ProdutoId = 1,
+            MercadoriaId = 1,
             Nome = "Ancho Intermezzo",
             Descricao = "Ancho Intermezzo",
             ImagemUri= "/images/01_ancho_intermezzo.webp",
@@ -24,9 +25,9 @@ public class ProdutoServico : IProdutoServico
             DataCadastro = DateTime.Now
         },
 
-        new Produto
+        new Mercadoria
         {
-            ProdutoId = 2,
+            MercadoriaId = 2,
             Nome = "Prime Rib Bassi Marfrig",
             Descricao = "Prime Rib Bassi Marfrig",
             ImagemUri= "/images/02_prime_rib_bassi_marfrig.webp",
@@ -35,9 +36,9 @@ public class ProdutoServico : IProdutoServico
             DataCadastro = DateTime.Now
         },
 
-        new Produto
+        new Mercadoria
         {
-            ProdutoId = 3,
+            MercadoriaId = 3,
             Nome = "Ancho Bassi Marfrig",
             Descricao = "Ancho Bassi Marfrig",
             ImagemUri= "/images/03_ancho_bassi_marfrig.webp",
@@ -46,9 +47,9 @@ public class ProdutoServico : IProdutoServico
             DataCadastro = DateTime.Now
         },
 
-        new Produto
+        new Mercadoria
         {
-            ProdutoId = 4,
+            MercadoriaId = 4,
             Nome = "T-Bone Intermezzo",
             Descricao = "T-Bone Intermezzo",
             ImagemUri= "/images/04_t_bone_intermezzo.webp",
@@ -68,33 +69,35 @@ public class ProdutoServico : IProdutoServico
     };
     }
 
-    public IList<Produto> ObterTodos()
-        => _produtos;
+    public IList<Mercadoria> ObterTodos()
+        => _Mercadorias;
 
-    public Produto Obter(int id)
-        => ObterTodos().SingleOrDefault(item => item.ProdutoId == id);
+    public Mercadoria Obter(int id)
+        => ObterTodos().SingleOrDefault(item => item.MercadoriaId == id);
 
-    public void Incluir(Produto produto)
+    public void Incluir(Mercadoria Mercadoria)
     {
-        var proximoId = _produtos.Max(item => item.ProdutoId) + 1;
-        produto.ProdutoId = proximoId;
-        _produtos.Add(produto);
+        var proximoId = _Mercadorias.Max(item => item.MercadoriaId) + 1;
+        Mercadoria.MercadoriaId = proximoId;
+        _Mercadorias.Add(Mercadoria);
     }
 
-    public void Alterar(Produto produto)
+    public void Alterar(Mercadoria Mercadoria)
     {
-        var produtoEncontrado = _produtos.SingleOrDefault(item => item.ProdutoId == produto.ProdutoId);
-        produtoEncontrado.Nome = produto.Nome;
-        produtoEncontrado.Descricao = produto.Descricao;
-        produtoEncontrado.ImagemUri = produto.ImagemUri;
-        produtoEncontrado.Preco = produto.Preco;
-        produtoEncontrado.EntregaExpressa = produto.EntregaExpressa;
-        produtoEncontrado.DataCadastro = produto.DataCadastro;
+        var MercadoriaEncontrado = _Mercadorias.SingleOrDefault(item => item.MercadoriaId == Mercadoria.MercadoriaId);
+        MercadoriaEncontrado.Nome = Mercadoria.Nome;
+        MercadoriaEncontrado.Descricao = Mercadoria.Descricao;
+        MercadoriaEncontrado.ImagemUri = Mercadoria.ImagemUri;
+        MercadoriaEncontrado.Preco = Mercadoria.Preco;
+        MercadoriaEncontrado.EntregaExpressa = Mercadoria.EntregaExpressa;
+        MercadoriaEncontrado.DataCadastro = Mercadoria.DataCadastro;
     }
 
     public void Excluir(int id)
     {
-        var produtoEncontrado = Obter(id);
-        _produtos.Remove(produtoEncontrado);
+        var MercadoriaEncontrado = Obter(id);
+        _Mercadorias.Remove(MercadoriaEncontrado);
     }
+
+    public IList<Marca> ObterTodasMarcas() => throw new NotImplementedException();
 }

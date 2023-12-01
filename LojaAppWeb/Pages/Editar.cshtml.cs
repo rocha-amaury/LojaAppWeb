@@ -2,26 +2,33 @@ using LojaAppWeb.Models;
 using LojaAppWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LojaAppWeb.Pages
 {
     public class EditarModel : PageModel
     {
-        private readonly IProdutoServico _service;
+        public SelectList MarcaOptionItems { get; set; }
 
-        public EditarModel(IProdutoServico service)
+        private readonly IMercadoriaServico _service;
+
+        public EditarModel(IMercadoriaServico service)
         {
             _service = service;
         }
 
         [BindProperty]
-        public Produto Produto { get; set; }
+        public Mercadoria Mercadoria { get; set; }
 
         public IActionResult OnGet(int id)
         {
-            Produto = _service.Obter(id);
+            Mercadoria = _service.Obter(id);
 
-            if (Produto == null)
+            MarcaOptionItems = new SelectList(_service.ObterTodasMarcas(),
+                                    nameof(Marca.MarcaId),
+                                    nameof(Marca.MarcaNome));
+
+            if (Mercadoria == null)
             {
                 return NotFound();
             }
@@ -35,7 +42,7 @@ namespace LojaAppWeb.Pages
                 return Page();
             }
 
-            _service.Alterar(Produto);
+            _service.Alterar(Mercadoria);
 
             TempData["TempMensagemSucesso"] = true;
 
@@ -44,7 +51,7 @@ namespace LojaAppWeb.Pages
 
         public IActionResult OnPostExclusao()
         {
-            _service.Excluir(Produto.ProdutoId);
+            _service.Excluir(Mercadoria.MercadoriaId);
 
             TempData["TempMensagemSucesso"] = true;
 

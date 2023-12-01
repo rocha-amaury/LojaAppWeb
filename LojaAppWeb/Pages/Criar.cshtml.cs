@@ -2,21 +2,31 @@ using LojaAppWeb.Models;
 using LojaAppWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LojaAppWeb.Pages;
 
 public class CriarModel : PageModel
 {
 
-    private readonly IProdutoServico _service;
+    public SelectList MarcaOptionItems { get; set; }
 
-    public CriarModel(IProdutoServico service)
+    private readonly IMercadoriaServico _service;
+
+    public CriarModel(IMercadoriaServico service)
     {
         _service = service;
     }
-    
+
+    public void OnGet()
+    {
+        MarcaOptionItems = new SelectList(_service.ObterTodasMarcas(),
+                                            nameof(Marca.MarcaId),
+                                            nameof(Marca.MarcaNome));
+    }
+
     [BindProperty]
-    public Produto Produto { get; set; }
+    public Mercadoria Mercadoria { get; set; }
 
     public IActionResult OnPost()
     {
@@ -25,7 +35,7 @@ public class CriarModel : PageModel
             return Page();
         }
 
-        _service.Incluir(Produto);
+        _service.Incluir(Mercadoria);
 
         TempData["TempMensagemSucesso"] = true;
 

@@ -5,44 +5,54 @@
 <div class="row pt-5">
      <div class="col-md-4">
          <form method="post">
-             <h4>Inclusão de Hamburguer</h4>
+             <h4>Inclusão de Mercadoria</h4>
              <hr />
 
              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
              <div class="form-group">
-                <label asp-for="Produto.Nome" class="control-label"></label>
-                <input asp-for="Produto.Nome" class="form-control" />
-                <span asp-validation-for="Produto.Nome" class="text-danger"></span>
+                <label asp-for="Mercadoria.Nome" class="control-label"></label>
+                <input asp-for="Mercadoria.Nome" class="form-control" />
+                <span asp-validation-for="Mercadoria.Nome" class="text-danger"></span>
              </div>
 
             <div class="form-group">
-                <label asp-for="Produto.Descricao" class="control-label"></label>
-                <input asp-for="Produto.Descricao" class="form-control" />
-                <span asp-validation-for="Produto.Descricao" class="text-danger"></span>
+                <label asp-for="Mercadoria.Descricao" class="control-label"></label>
+                <input asp-for="Mercadoria.Descricao" class="form-control" />
+                <span asp-validation-for="Mercadoria.Descricao" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Produto.ImagemUri" class="control-label"></label>
-                <input asp-for="Produto.ImagemUri" class="form-control" />
-                <span asp-validation-for="Produto.ImagemUri" class="text-danger"></span>
+                <label asp-for="Mercadoria.ImagemUri" class="control-label"></label>
+                <input asp-for="Mercadoria.ImagemUri" class="form-control" />
+                <span asp-validation-for="Mercadoria.ImagemUri" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Produto.Preco" class="control-label"></label>
-                <input asp-for="Produto.Preco" class="form-control" />
-                <span asp-validation-for="Produto.Preco" class="text-danger"></span>
+                <label asp-for="Mercadoria.Preco" class="control-label"></label>
+                <input asp-for="Mercadoria.Preco" class="form-control" />
+                <span asp-validation-for="Mercadoria.Preco" class="text-danger"></span>
             </div>
             
              <div class="form-group mt-3 mb-3">
-                <input class="form-check-input" asp-for="Produto.EntregaExpressa" />
-                <label asp-for="Produto.EntregaExpressa"></label>
+                <input class="form-check-input" asp-for="Mercadoria.EntregaExpressa" />
+                <label asp-for="Mercadoria.EntregaExpressa"></label>
              </div>
 
             <div class="form-group">
-                <label asp-for="Produto.DataCadastro" class="control-label"></label>
-                <input asp-for="Produto.DataCadastro" class="form-control" />
-                <span asp-validation-for="Produto.DataCadastro" class="text-danger"></span>
+                <label asp-for="Mercadoria.DataCadastro" class="control-label"></label>
+                <input asp-for="Mercadoria.DataCadastro" class="form-control" />
+                <span asp-validation-for="Mercadoria.DataCadastro" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3 mb-3">
+                <label asp-for="Mercadoria.MarcaId" class="control-label"></label>
+                <select class="form-select" asp-for="Mercadoria.MarcaId"
+                        asp-items="Model.MarcaOptionItems">
+                    <option value="">Selecione uma opção</option>
+                </select>
+                <span asp-validation-for="Mercadoria.MarcaId" class="text-danger">
+                </span>
             </div>
 
              <div class="form-group mt-4">

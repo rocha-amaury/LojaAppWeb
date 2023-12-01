@@ -4,6 +4,7 @@ using LojaAppWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaAppWeb.Data.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    partial class LojaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231201071646_AdicionarTabelaMercadoria")]
+    partial class AdicionarTabelaMercadoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +65,6 @@ namespace LojaAppWeb.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MarcaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -75,21 +75,7 @@ namespace LojaAppWeb.Data.Migrations
 
                     b.HasKey("MercadoriaId");
 
-                    b.HasIndex("MarcaId");
-
                     b.ToTable("Mercadoria");
-                });
-
-            modelBuilder.Entity("LojaAppWeb.Models.Mercadoria", b =>
-                {
-                    b.HasOne("LojaAppWeb.Models.Marca", null)
-                        .WithMany("Mercadorias")
-                        .HasForeignKey("MarcaId");
-                });
-
-            modelBuilder.Entity("LojaAppWeb.Models.Marca", b =>
-                {
-                    b.Navigation("Mercadorias");
                 });
 #pragma warning restore 612, 618
         }
