@@ -11,4 +11,5 @@ public interface IMercadoriaServico
     public void Excluir(int id);
     IList<Marca> ObterTodasMarcas();
     Marca ObterMarca(int id);
+    IList<Categoria> ObterTodasCategorias();
 }

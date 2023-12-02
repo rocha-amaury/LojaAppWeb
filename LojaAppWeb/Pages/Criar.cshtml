@@ -55,6 +55,18 @@
                 </span>
             </div>
 
+            <div class="form-group mt-3 mb-3">
+
+                <label asp-for="Mercadoria.Categorias" class="control-label"></label>
+
+                <select class="form-select" asp-for="CategoriaIds"
+                        asp-items="Model.CategoriaOptionItems">
+                </select>
+
+                <span asp-validation-for="Mercadoria.Categorias" class="text-danger">
+                </span>
+            </div>
+
              <div class="form-group mt-4">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
              </div>

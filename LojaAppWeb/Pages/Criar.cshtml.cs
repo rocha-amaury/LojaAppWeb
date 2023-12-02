@@ -11,6 +11,7 @@ public class CriarModel : PageModel
 {
 
     public SelectList MarcaOptionItems { get; set; }
+    public SelectList CategoriaOptionItems { get; set; }
 
     private readonly IMercadoriaServico _service;
     private IToastNotification _toastNotification;
@@ -27,13 +28,24 @@ public class CriarModel : PageModel
         MarcaOptionItems = new SelectList(_service.ObterTodasMarcas(),
                                             nameof(Marca.MarcaId),
                                             nameof(Marca.MarcaNome));
+
+        CategoriaOptionItems = new SelectList(_service.ObterTodasCategorias(),
+                        nameof(Categoria.CategoriaId),
+                        nameof(Categoria.CategoriaNome));
     }
 
     [BindProperty]
     public Mercadoria Mercadoria { get; set; }
 
+    [BindProperty]
+    public IList<int> CategoriaIds { get; set; }
+
     public IActionResult OnPost()
     {
+        Mercadoria.Categorias = _service.ObterTodasCategorias()
+                                .Where(item => CategoriaIds.Contains(item.CategoriaId))
+                                .ToList();
+
         if (!ModelState.IsValid)
         {
             return Page();

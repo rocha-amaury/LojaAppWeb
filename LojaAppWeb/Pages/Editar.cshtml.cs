@@ -10,6 +10,7 @@ namespace LojaAppWeb.Pages
     public class EditarModel : PageModel
     {
         public SelectList MarcaOptionItems { get; set; }
+        public SelectList CategoriaOptionItems { get; set; }
 
         private readonly IMercadoriaServico _service;
         private IToastNotification _toastNotification;
@@ -24,13 +25,22 @@ namespace LojaAppWeb.Pages
         [BindProperty]
         public Mercadoria Mercadoria { get; set; }
 
+        [BindProperty]
+        public IList<int> CategoriaIds { get; set; }
+
         public IActionResult OnGet(int id)
         {
             Mercadoria = _service.Obter(id);
 
+            CategoriaIds = Mercadoria.Categorias.Select(item => item.CategoriaId).ToList();
+
             MarcaOptionItems = new SelectList(_service.ObterTodasMarcas(),
                                     nameof(Marca.MarcaId),
                                     nameof(Marca.MarcaNome));
+
+            CategoriaOptionItems = new SelectList(_service.ObterTodasCategorias(),
+                        nameof(Categoria.CategoriaId),
+                        nameof(Categoria.CategoriaNome));
 
             if (Mercadoria == null)
             {
@@ -41,6 +51,10 @@ namespace LojaAppWeb.Pages
 
         public IActionResult OnPost()
         {
+            Mercadoria.Categorias = _service.ObterTodasCategorias()
+                         .Where(item => CategoriaIds.Contains(item.CategoriaId))
+                         .ToList();
+
             if (!ModelState.IsValid)
             {
                 return Page();

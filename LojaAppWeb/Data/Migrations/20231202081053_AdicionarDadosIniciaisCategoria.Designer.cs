@@ -4,6 +4,7 @@ using LojaAppWeb.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaAppWeb.Data.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
-    partial class LojaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231202081053_AdicionarDadosIniciaisCategoria")]
+    partial class AdicionarDadosIniciaisCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace LojaAppWeb.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CategoriaMercadoria", b =>
-                {
-                    b.Property<int>("CategoriasCategoriaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MercadoriasMercadoriaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriasCategoriaId", "MercadoriasMercadoriaId");
-
-                    b.HasIndex("MercadoriasMercadoriaId");
-
-                    b.ToTable("CategoriaMercadoria");
-                });
 
             modelBuilder.Entity("LojaAppWeb.Models.Categoria", b =>
                 {
@@ -110,21 +98,6 @@ namespace LojaAppWeb.Data.Migrations
                     b.HasIndex("MarcaId");
 
                     b.ToTable("Mercadoria");
-                });
-
-            modelBuilder.Entity("CategoriaMercadoria", b =>
-                {
-                    b.HasOne("LojaAppWeb.Models.Categoria", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriasCategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LojaAppWeb.Models.Mercadoria", null)
-                        .WithMany()
-                        .HasForeignKey("MercadoriasMercadoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("LojaAppWeb.Models.Mercadoria", b =>

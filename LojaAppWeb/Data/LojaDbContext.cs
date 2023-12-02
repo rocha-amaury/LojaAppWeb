@@ -16,6 +16,7 @@ public class LojaDbContext : DbContext
     //Mapeando classe do modelo como entidade no EF
     public DbSet<Mercadoria> Mercadoria { get; set; }
     public DbSet<Marca> Marca { get; set; }
+    public DbSet<Categoria> Categoria { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

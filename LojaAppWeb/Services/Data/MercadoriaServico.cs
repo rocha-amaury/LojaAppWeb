@@ -1,5 +1,6 @@
 ﻿using LojaAppWeb.Data;
 using LojaAppWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LojaAppWeb.Services.Data;
 
@@ -21,6 +22,7 @@ public class MercadoriaServico : IMercadoriaServico
         MercadoriaEncontrada.EntregaExpressa = Mercadoria.EntregaExpressa;
         MercadoriaEncontrada.DataCadastro = Mercadoria.DataCadastro;
         MercadoriaEncontrada.MarcaId = Mercadoria.MarcaId;
+        MercadoriaEncontrada.Categorias = Mercadoria.Categorias;
         _context.SaveChanges();
     }
 
@@ -39,7 +41,9 @@ public class MercadoriaServico : IMercadoriaServico
 
     public Mercadoria Obter(int id)
     {
-        return _context.Mercadoria.SingleOrDefault(item => item.MercadoriaId == id);
+        return _context.Mercadoria
+                        .Include(item => item.Categorias)
+                        .SingleOrDefault(item => item.MercadoriaId == id);
     }
 
     public IList<Mercadoria> ObterTodos()
@@ -49,6 +53,10 @@ public class MercadoriaServico : IMercadoriaServico
 
     public IList<Marca> ObterTodasMarcas() => _context.Marca.ToList();
 
-    public Marca ObterMarca(int id) => _context.Marca.SingleOrDefault(item => item.MarcaId == id);
-  
+    public Marca ObterMarca(int id) 
+        => _context.Marca.SingleOrDefault(item => item.MarcaId == id);
+
+    public IList<Categoria> ObterTodasCategorias()
+        => _context.Categoria.ToList();
+
 }

@@ -105,4 +105,9 @@ public class MercadoriaServico : IMercadoriaServico
     {
         throw new NotImplementedException();
     }
+
+    public IList<Categoria> ObterTodasCategorias()
+    {
+        throw new NotImplementedException();
+    }
 }
