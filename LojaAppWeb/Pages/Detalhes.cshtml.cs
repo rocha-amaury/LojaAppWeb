@@ -19,13 +19,6 @@ public class DetalhesModel : PageModel
 
     public Mercadoria Mercadoria { get; private set; }
 
-    //public void OnGet(int id)
-    //{
-    //    var service = new MercadoriaServico();
-    //    Mercadoria = service.Obter(id);
-
-    //}
-
     public IActionResult OnGet(int id)
     {
         Mercadoria = _service.Obter(id);

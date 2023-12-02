@@ -60,15 +60,6 @@ public partial class AdicionarDadosIniciaisMercadoria : Migration
         EntregaExpressa= false,
         DataCadastro = DateTime.Now
     },
-
-
-    //05 - Shoulder Black VPJ
-    //06 - Flat Iron Intermezzo
-    //07 - Chuck Steak Intermezzo
-    //08 - Prime Rib Bassi Marfrig
-    //09 - Maminha Bassi Marfrig
-    //10 - Tomahawk Cara Preta
-
 };
     }
 }

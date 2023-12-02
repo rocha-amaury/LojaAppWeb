@@ -3,6 +3,7 @@ using LojaAppWeb.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
 
 namespace LojaAppWeb.Pages
 {
@@ -11,10 +12,13 @@ namespace LojaAppWeb.Pages
         public SelectList MarcaOptionItems { get; set; }
 
         private readonly IMercadoriaServico _service;
+        private IToastNotification _toastNotification;
 
-        public EditarModel(IMercadoriaServico service)
+        public EditarModel(IMercadoriaServico service,
+                            IToastNotification toastNotification)
         {
             _service = service;
+            _toastNotification = toastNotification;
         }
 
         [BindProperty]
@@ -44,7 +48,8 @@ namespace LojaAppWeb.Pages
 
             _service.Alterar(Mercadoria);
 
-            TempData["TempMensagemSucesso"] = true;
+            //TempData["TempMensagemSucesso"] = true;
+            _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
 
             return RedirectToPage("/Index");
         }
@@ -53,7 +58,8 @@ namespace LojaAppWeb.Pages
         {
             _service.Excluir(Mercadoria.MercadoriaId);
 
-            TempData["TempMensagemSucesso"] = true;
+            //TempData["TempMensagemSucesso"] = true;
+            _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
 
             return RedirectToPage("/Index");
         }

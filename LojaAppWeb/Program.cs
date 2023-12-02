@@ -2,11 +2,18 @@ using LojaAppWeb.Data;
 using LojaAppWeb.Services;
 using LojaAppWeb.Services.Data;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+        .AddNToastNotifyToastr(new ToastrOptions()
+        {
+            TimeOut = 5000,
+            ProgressBar = true,
+            PositionClass = ToastPositions.BottomRight
+        });
 
 builder.Services.AddTransient < IMercadoriaServico, MercadoriaServico>();
 builder.Services.AddDbContext<LojaDbContext>();
@@ -28,6 +35,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseNToastNotify();
 
 app.UseAuthorization();
 
