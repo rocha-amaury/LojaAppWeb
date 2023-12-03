@@ -24,6 +24,8 @@ public partial class AdicionarDadosIniciaisMarca : Migration
             new Marca() { MarcaNome = "Marfrig"},
             new Marca() { MarcaNome = "VPJ"},
             new Marca() { MarcaNome = "Cara Preta"},
+            new Marca() { MarcaNome = "Cantagallo"},
+            new Marca() { MarcaNome = "D'Pão"},
         };
     }
 
