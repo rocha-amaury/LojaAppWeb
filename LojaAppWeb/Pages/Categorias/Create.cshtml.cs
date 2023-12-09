@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using LojaAppWeb.Data;
 using LojaAppWeb.Models;
+using NToastNotify;
 
 namespace LojaAppWeb.Pages.Categorias
 {
     public class CreateModel : PageModel
     {
         private readonly LojaAppWeb.Data.LojaDbContext _context;
+        private IToastNotification _toastNotification;
 
-        public CreateModel(LojaAppWeb.Data.LojaDbContext context)
+        public CreateModel(LojaAppWeb.Data.LojaDbContext context,
+                        IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
         }
 
         public IActionResult OnGet()
@@ -39,6 +43,7 @@ namespace LojaAppWeb.Pages.Categorias
             _context.Categoria.Add(Categoria);
             await _context.SaveChangesAsync();
 
+            _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
             return RedirectToPage("./Index");
         }
     }

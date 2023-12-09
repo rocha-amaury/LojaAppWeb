@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using LojaAppWeb.Data;
 using LojaAppWeb.Models;
+using NToastNotify;
+
 
 namespace LojaAppWeb.Pages.Marcas
 {
     public class DeleteModel : PageModel
     {
         private readonly LojaAppWeb.Data.LojaDbContext _context;
+        private IToastNotification _toastNotification;
 
-        public DeleteModel(LojaAppWeb.Data.LojaDbContext context)
+        public DeleteModel(LojaAppWeb.Data.LojaDbContext context,
+                        IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
         }
 
         [BindProperty]
@@ -57,6 +62,7 @@ namespace LojaAppWeb.Pages.Marcas
                 await _context.SaveChangesAsync();
             }
 
+            _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
             return RedirectToPage("./Index");
         }
     }

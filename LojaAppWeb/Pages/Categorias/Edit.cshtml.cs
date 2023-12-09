@@ -8,16 +8,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LojaAppWeb.Data;
 using LojaAppWeb.Models;
+using NToastNotify;
 
 namespace LojaAppWeb.Pages.Categorias
 {
     public class EditModel : PageModel
     {
         private readonly LojaAppWeb.Data.LojaDbContext _context;
+        private IToastNotification _toastNotification;
 
-        public EditModel(LojaAppWeb.Data.LojaDbContext context)
+        public EditModel(LojaAppWeb.Data.LojaDbContext context,
+                            IToastNotification toastNotification)
         {
             _context = context;
+            _toastNotification = toastNotification;
         }
 
         [BindProperty]
@@ -65,7 +69,7 @@ namespace LojaAppWeb.Pages.Categorias
                     throw;
                 }
             }
-
+            _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
             return RedirectToPage("./Index");
         }
 
