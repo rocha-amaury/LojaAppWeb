@@ -18,7 +18,7 @@ namespace LojaAppWeb.Data.Migrations
                     MercadoriaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ImagemUri = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Preco = table.Column<double>(type: "float", nullable: false),
                     EntregaExpressa = table.Column<bool>(type: "bit", nullable: false),

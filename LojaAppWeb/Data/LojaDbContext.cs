@@ -1,9 +1,10 @@
 ﻿using LojaAppWeb.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LojaAppWeb.Data;
 
-public class LojaDbContext : DbContext
+public class LojaDbContext : IdentityDbContext
 {
     public LojaDbContext()
     {

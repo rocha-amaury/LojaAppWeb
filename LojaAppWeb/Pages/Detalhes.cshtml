@@ -40,7 +40,12 @@
                 </li>
             }
         </ul>
-        <a class="btn my-3 btn-primary"
-        asp-page="/Editar" asp-route-id="@Model.Mercadoria.MercadoriaId">Editar</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <a class="btn my-3 btn-primary"
+               asp-page="/Editar" asp-route-id="@Model.Mercadoria.MercadoriaId">Editar</a>
+            //Exibir elementos somente para usuários autenticados
+        }
+
     </div>
 </div>

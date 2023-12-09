@@ -1,5 +1,6 @@
 using LojaAppWeb.Models;
 using LojaAppWeb.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -7,6 +8,7 @@ using NToastNotify;
 
 namespace LojaAppWeb.Pages
 {
+    [Authorize]
     public class EditarModel : PageModel
     {
         public SelectList MarcaOptionItems { get; set; }
