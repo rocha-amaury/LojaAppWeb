@@ -64,7 +64,6 @@ namespace LojaAppWeb.Pages
 
             _service.Alterar(Mercadoria);
 
-            //TempData["TempMensagemSucesso"] = true;
             _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
 
             return RedirectToPage("/Index");
@@ -74,7 +73,6 @@ namespace LojaAppWeb.Pages
         {
             _service.Excluir(Mercadoria.MercadoriaId);
 
-            //TempData["TempMensagemSucesso"] = true;
             _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
 
             return RedirectToPage("/Index");

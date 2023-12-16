@@ -55,7 +55,6 @@ public class CriarModel : PageModel
 
         _service.Incluir(Mercadoria);
 
-        //TempData["TempMensagemSucesso"] = true;
         _toastNotification.AddSuccessToastMessage("Operação realizada com sucesso!");
 
         return RedirectToPage("/Index");

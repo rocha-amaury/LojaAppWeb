@@ -13,8 +13,6 @@ public class LojaDbContext : IdentityDbContext
     public LojaDbContext(DbContextOptions options) : base(options)
     {
     }
-
-    //Mapeando classe do modelo como entidade no EF
     public DbSet<Mercadoria> Mercadoria { get; set; }
     public DbSet<Marca> Marca { get; set; }
     public DbSet<Categoria> Categoria { get; set; }

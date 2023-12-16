@@ -21,10 +21,8 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         ViewData["Title"] = "Home page";
-
-        //var service = new MercadoriaServico();        
-        ListaMercadorias = _service.ObterTodos();
-                
+    
+        ListaMercadorias = _service.ObterTodos();                
     }    
 
 }
