@@ -5,7 +5,7 @@
 namespace LojaAppWeb.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class AdicionarRelacionamentomercadoriaCategoria : Migration
+    public partial class AdicionarRelacionamentoMercadoriaCategoria : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

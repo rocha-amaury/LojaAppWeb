@@ -13,7 +13,7 @@ namespace LojaAppWeb.Data.Migrations
 {
     [DbContext(typeof(LojaDbContext))]
     [Migration("20231202082803_AdicionarRelacionamentomercadoriaCategoria")]
-    partial class AdicionarRelacionamentomercadoriaCategoria
+    partial class AdicionarRelacionamentoMercadoriaCategoria
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
